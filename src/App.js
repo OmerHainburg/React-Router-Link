@@ -1,25 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Switch, Route } from "react-router-dom";
+import MyComponent from "./MyComponent";
 import "./styles.scss";
 
 export default function App() {
   return (
     <div className="App">
       <nav>
-        <Link className="link" to="/component1"
-          style={isActive => ({
-           color: isActive ? "green" : "blue"
-           })}
+        <NavLink className="link" to="/component1"
+          activeStyle={{
+            fontWeight: "bold",
+            color: "red"
+          }}
           >
           Component 1
-        </Link>
-        <Link className="link" to="/component1"
-          style={isActive => ({
-             color: isActive ? "green" : "blue"
-           })}
+        </NavLink>
+        <NavLink className="link" to="/component2"
+          activeStyle={{
+            fontWeight: "bold",
+            color: "red"
+          }}
           >
           Component 2
-        </Link>
+        </NavLink>
       </nav>
       <div className="Instructions">
         <p className="block">
@@ -37,6 +40,14 @@ export default function App() {
             Help{" "}
           </a>
         </p>
+        <Switch>
+          <Route path="/component1">
+            <MyComponent  />
+          </Route>
+          <Route path="/component2">
+            <MyComponent  />
+          </Route>
+        </Switch>
       </div>
     </div>
   );
